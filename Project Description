@@ -1,0 +1,2 @@
+This code can tokenize sentences, and doesn’t include abbreviations.  
+One problem with it is that it excludes the abbreviations from the output altogether.  However, it does produce an accurate sentence count.
