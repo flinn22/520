@@ -1,23 +1,16 @@
-# open a file 
-file = input("please input file as .txt: ")
-import os.path
-if os.path.exists(file):
-    print("it exists")
-else:
-    file = input("please name file that exists: ")
+# This code can tokenize sentences, and doesn’t include abbreviations.  
+#  One problem with it is that it excludes the abbreviations from the output altogether.  
+# However, it does produce an accurate sentence count.
 
-with open(file) as file_doc:
-    file_content = file_doc.read()
-
-# tokenize the sentences
+file_content = 'Mr. Brown went to the store...  I saw him with my own eyes.  What was he buying?  Coffee!'
 import re # Import the library of regular expressions
-# output = re.sub('\.\.\.', '***', file_content, flags=re.I)
-# print(output)
 
-sentence_tokenization = re.findall(r"[^\.!\?]+[\.!\?]+", file_content)
-abbreviations = re.findall(r"[A-Z{2,4}]\w+[.]", file_content)
+sentence_tokenization = re.findall(r"[^\.!\?]+[\.!\?]+", file_content) # Tokenize the sentences, by identifying a period, 
+# question mark, or exclamation point, preceeded by text which does not contain these characters.
+abbreviations = re.findall(r"[A-Z{2,4}]\w+[.]", file_content) #Find all of the abbreviations, by finding text that starts with
+# capital letter, contains 2-4 word characters, and ends with a period.
 
-for x in abbreviations:
-     sentence_tokenization.remove(x)
-print(sentence_tokenization)
-print(len(sentence_tokenization))
+for x in abbreviations: # For each token identified as an abbreviation...
+     sentence_tokenization.remove(x) # Remove it from the tokenized sentences
+print(sentence_tokenization) # Print the tokenized sentences (and do not include the abbreviations)
+print(len(sentence_tokenization)) # Print the total number of tokenized sentences
