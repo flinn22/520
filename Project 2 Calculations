@@ -1,0 +1,16 @@
+true_positives = 17
+false_positives = 0
+true_negatives = 0
+false_negatives = 0
+
+accuracy = (true_positives + true_negatives) / (true_positives + true_negatives + false_positives + false_negatives)
+print(accuracy)
+
+recall = true_positives / (true_positives + false_negatives)
+print(recall)
+
+precision = true_positives / (true_positives + false_positives)
+print(precision)
+
+F1_score = 2*(precision * recall)/(precision + recall)
+print(F1_score)
