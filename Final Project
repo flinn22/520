@@ -1,0 +1,37 @@
+# open a file 
+file = input("please input file as .txt: ")
+import os.path
+if os.path.exists(file):
+    print("it exists")
+else:
+    file = input("please name file that exists: ")
+        
+with open(file) as file_doc:
+    file_content = file_doc.read()
+# print(file_content)
+
+# find the tags 
+import re
+tags = re.findall(r"(ADJ|ADP|ADV|AUX|CCONJ|DET|INTJ|NOUN|NUM|PART|PRON|PROPN|PUNCT|SCONJ|SYM|VERB|X)", file_content)
+# print(tags)
+
+# Create an empty dictionary
+d = dict()
+
+# Iterate over each tag in line
+for tag in tags:
+# Check if the tag is already in dictionary
+	if tag in d:
+# Increment count of tag by 1
+		d[tag] = d[tag] + 1
+	else:
+# Add the tag to dictionary with count 1
+		d[tag] = 1
+print(d)
+total_nouns = d['NOUN'] + d['PROPN'] + d['PRON']
+total_tags = (d['ADJ'] + d['ADP']+ d['ADV']+ d['AUX']+ d['CCONJ'] + d['DET']+ d['INTJ']+ d['NOUN']+ d['NUM']+ d['PART']+ d['PRON']+ d['PROPN']+
+d['PUNCT']+ d['SCONJ']+ d['VERB']+ d['X'])
+print(total_nouns)
+print(total_tags)
+percentage_of_tags_which_are_nouns = total_nouns/total_tags
+print(percentage_of_tags_which_are_nouns)
